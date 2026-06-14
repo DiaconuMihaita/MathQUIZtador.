@@ -1,50 +1,54 @@
-PAS CU PAS – CE VOM CONSTRUI
-🔹 1. Frontend (React + Leaflet.js)
-Pagina de autentificare (login/register)
+# React + TypeScript + Vite
 
-Ecran lobby (alegi jocul, vezi alți jucători)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Hartă interactivă (cu țări clicabile)
+Currently, two official plugins are available:
 
-UI întrebări și răspunsuri
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Animații pentru cuceriri
+## Expanding the ESLint configuration
 
-🔹 2. Backend (Node.js + Express)
-API pentru useri (login/register)
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-API pentru întrebări (GET, POST)
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-Logica de joc (rundă, scoruri, control teritorii)
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-🔹 3. WebSocket (Socket.IO)
-Conectare la joc în timp real
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-Evenimente: "jucător a răspuns", "țară cucerită", "start rundă"
-
-Sincronizare între jucători
-
-🔹 4. Baza de date (PostgreSQL sau MongoDB)
-Tabele/colecții:
-
-users (cu scoruri)
-
-games (stare joc)
-
-territories (cine controlează ce)
-
-questions (cu dificultate, răspunsuri etc.)
-
-🔹 5. Mapă + Logică teritorii
-Hartă SVG sau Leaflet
-
-Cod pentru determinarea teritoriilor controlate
-
-Vecinătăți între țări (ca să știi unde poți ataca)
-
-🔹 6. Sistem de quiz
-Întrebări randomizate, cu temporizator
-
-Răspunsuri multiple
-
-Punctaj pe răspuns corect și timp
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
