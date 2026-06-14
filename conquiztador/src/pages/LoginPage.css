@@ -1,0 +1,60 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #0a0a0a;
+  position: relative;
+}
+
+.dragon-intro {
+  display: flex;
+  gap: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.dragon-part {
+  width: 80px;
+  height: 80px;
+  background: url('/images/dragon-part.png') no-repeat center/contain;
+  opacity: 0;
+  animation: appear 1s forwards;
+}
+
+.part1 { animation-delay: 0s; }
+.part2 { animation-delay: 0.5s; }
+.part3 { animation-delay: 1s; }
+.part4 { animation-delay: 1.5s; }
+
+@keyframes appear {
+  to {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.tabs button {
+  padding: 0.5rem 1rem;
+  background: #444;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.tabs button.active {
+  background: #f0ad4e;
+}
+
+.forgot-password {
+  text-align: right;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
